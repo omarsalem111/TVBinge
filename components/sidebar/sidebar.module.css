@@ -1,0 +1,43 @@
+.sidebar {
+  padding: 3rem 2rem;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--purple-950);
+}
+
+.sidebar .logo {
+  width: 144px;
+  height: auto;
+  display: block;
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar li {
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+}
+
+.sidebar .profile {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.sidebar h6 {
+  font-size: var(--font-size-heading-6);
+}
+
+.sidebar .navItem {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}

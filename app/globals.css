@@ -1,16 +1,42 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Primitives */
+  --purple-50: #eee7fe;
+  --purple-100: #ddcffc;
+  --purple-200: #aa86f9;
+  --purple-300: #8955f6;
+  --purple-400: #6625f4;
+  --purple-500: #550df2;
+  --purple-600: #440ac2;
+  --purple-700: #330891;
+  --purple-800: #220561;
+  --purple-900: #080118;
+  --purple-950: #05010f;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-size-heading-1: 3rem;
+  --font-size-heading-2: 2.5rem;
+  --font-size-heading-3: 2rem;
+  --font-size-heading-4: 1.5rem;
+  --font-size-heading-5: 1rem;
+  --font-size-heading-6: 0.875rem;
+
+  --font-size-text-1: 1.5rem;
+  --font-size-text-2: 1.25rem;
+  --font-size-text-3: 1rem;
+  --font-size-text-4: 0.875rem;
+  --font-size-text-5: 0.75rem;
+  --font-size-text-6: 0.625rem;
+
+  --font-weight-heading: 600;
+  --font-weight-text: 400;
+
+  /* Tokens */
+
+  --color-bg: var(--purple-900);
+  --color-text: var(--purple-50);
 }
 
 html {
+  font-size: 16px;
   height: 100%;
 }
 
@@ -23,12 +49,12 @@ body {
 body {
   min-height: 100%;
   display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: row;
+  color: var(--color-text);
+  background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 300;
 }
 
 * {
@@ -42,8 +68,35 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--font-size-heading-1);
+}
+
+h2 {
+  font-size: var(--font-size-heading-2);
+}
+
+h3 {
+  font-size: var(--font-size-heading-3);
+}
+
+h4 {
+  font-size: var(--font-size-heading-4);
+}
+
+h5 {
+  font-size: var(--font-size-heading-5);
+}
+
+h6 {
+  font-size: var(--font-size-heading-6);
 }

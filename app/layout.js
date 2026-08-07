@@ -1,13 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import SideBar from "@/components/sidebar/sidebar";
 import "./globals.css";
+import { Space_Grotesk } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
@@ -18,8 +13,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={spaceGrotesk.className}>
+      <body>
+        <SideBar></SideBar>
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,0 +1,26 @@
+<svg width="246" height="60" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <filter id="svg_4_blur">
+   <feGaussianBlur stdDeviation="0" in="SourceGraphic"/>
+  </filter>
+ </defs>
+ <!-- TV Screen Icon -->
+ <!-- Text: TVBinge -->
+ <!-- Subtitle -->
+ <!-- Decorative progress dots -->
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <!-- TV Stand -->
+   <rect id="svg_5" fill="#550df2" rx="1.5" height="3" width="16" y="49.35294" x="26.5"/>
+   <rect id="svg_6" fill="#550df2" rx="1" height="8" width="8" y="52.05882" x="30.5"/>
+  </g>
+  <!-- Outer TV Frame -->
+  <path stroke-width="9" id="svg_2" d="m4.5,4.5l60,0l0,45l-60,0l0,-45z" opacity="undefined" fill="#550df2"/>
+  <!-- Screen -->
+  <path id="svg_3" d="m9.5,11.5c0,-1.08676 0.91324,-2 2,-2l46,0c1.08676,0 2,0.91324 2,2l0,26c0,1.08676 -0.91324,2 -2,2l-46,0c-1.08676,0 -2,-0.91324 -2,-2l0,-26z" opacity="undefined"/>
+  <!-- Play button inside screen (centered) -->
+  <polygon filter="url(#svg_4_blur)" id="svg_4" fill="#550df2" points="30.798702239990234,18.577922821044922 30.798702239990234,29.577922821044922 40.798702239990234,24.077922821044922 "/>
+  <text id="svg_7" fill="#550df2" font-weight="bold" font-size="42" font-family="'Space Grotesk'" y="44.5" x="79.5">TVBinge</text>
+ </g>
+</svg>
