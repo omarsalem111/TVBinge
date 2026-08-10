@@ -7,7 +7,7 @@ export default function FeaturedShow() {
     <article className={styles.featured}>
       <Image src={backgroundImage} alt="Ted Lasso Backdrop Image" fill></Image>
       <div className={styles.overlay}>
-        <h2>Ted Lasso is Back!</h2>
+        <h2 className={styles.title}>Ted Lasso is Back!</h2>
         <p>Season 4 : Episode 1 is out.</p>
       </div>
     </article>

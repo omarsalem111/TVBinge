@@ -1,6 +1,6 @@
 import styles from "./sidebar.module.css";
 import Logo from "./logo";
-import NavList from "./nav";
+import NavList from "./nav/nav";
 import Profile from "./profile";
 
 export default function SideBar() {

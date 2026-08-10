@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.primaryButton {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--purple-950);
+  color: var(--text-primary);
+  border-radius: 0.5rem;
+  border: 1px solid var(--purple-800);
+  font-weight: var(--font-weight-heading);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.primaryButton:hover {
+  cursor: pointer;
+  background-color: var(--purple-500);
+  transition: ease-in-out 0.3s;
+}

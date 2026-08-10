@@ -1,6 +1,9 @@
 .sidebar {
-  padding: 3rem 2rem;
-  width: 300px;
+  padding: 3rem 4rem 3rem 2rem;
+  height: 100vh;
+  min-height: 700px;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,31 +16,25 @@
   display: block;
 }
 
-.sidebar ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.sidebar li {
-  border-radius: 0.5rem;
-  padding: 1rem 0.5rem;
-}
-
-.sidebar .profile {
+.profile {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   align-items: center;
 }
 
-.sidebar h6 {
-  font-size: var(--font-size-heading-6);
+.profilePic {
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.sidebar .navItem {
+.profileDetails {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.profileDetails p {
+  font-size: var(--font-size-text-5);
+  color: var(--text-secondary);
 }

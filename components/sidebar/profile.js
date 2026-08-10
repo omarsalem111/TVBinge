@@ -9,13 +9,13 @@ export default function Profile() {
         <Image
           src={profilePic}
           alt="Profile Picture"
-          width={50}
-          height={50}
-          style={{ borderRadius: "50%", objectFit: "cover" }}
+          className={styles.profilePic}
+          width={48}
+          height={48}
         ></Image>
-        <div>
+        <div className={styles.profileDetails}>
           <h6>Omar Salem</h6>
-          <p>Click to view</p>
+          <p>View Details</p>
         </div>
       </div>
     </div>
