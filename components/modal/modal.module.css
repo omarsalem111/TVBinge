@@ -1,0 +1,15 @@
+.modal {
+  margin: auto;
+  background-color: var(--purple-950);
+  border: 1px solid var(--purple-800);
+  color: var(--text-primary);
+  border: none;
+  padding: 3rem;
+  border-radius: 1rem;
+  width: 30%;
+}
+
+.modal::backdrop {
+  background: hsla(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}

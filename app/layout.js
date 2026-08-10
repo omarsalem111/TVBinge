@@ -1,6 +1,8 @@
 import SideBar from "@/components/sidebar/sidebar";
+import AuthModal from "@/components/auth-flow/auth-modal";
 import "./globals.css";
 import { Space_Grotesk } from "next/font/google";
+import { AuthProvider } from "@/context/auth-context";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -15,8 +17,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={spaceGrotesk.className}>
       <body>
-        <SideBar></SideBar>
-        {children}
+        <AuthProvider>
+          <AuthModal></AuthModal>
+          <SideBar></SideBar>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
