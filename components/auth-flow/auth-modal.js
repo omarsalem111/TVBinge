@@ -2,13 +2,13 @@
 
 import { useAuth } from "@/context/auth-context";
 import Modal from "../modal/modal";
-import LoginPage from "./login";
-import { useState } from "react";
-import SignupPage from "./signup";
+import styles from "./auth.module.css";
+import AuthModalHeader from "./auth-modal-header";
+import AuthModalChanger from "./auth-modal-changer";
+import AuthForm from "./auth-form";
 
 export default function AuthModal() {
-  const { isOpen } = useAuth();
-  const [authMode, setAuthMode] = useState("login");
+  const { isOpen, setIsOpen, authMode, setAuthMode } = useAuth();
 
   function changeAuthForm() {
     if (authMode === "login") {
@@ -17,19 +17,28 @@ export default function AuthModal() {
       setAuthMode("login");
     }
   }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <Modal open={isOpen}>
-      {authMode === "login" ? (
-        <LoginPage
+      <div className={styles.main}>
+        <AuthModalHeader
+          authMode={authMode}
+          onClose={closeModal}
+        ></AuthModalHeader>
+        <AuthForm authMode={authMode}></AuthForm>
+        {/* <div className={styles.divider}>
+          <hr />
+          <h5>OR</h5>
+          <hr />
+        </div> */}
+        <AuthModalChanger
           authMode={authMode}
           changeAuthForm={changeAuthForm}
-        ></LoginPage>
-      ) : (
-        <SignupPage
-          authMode={authMode}
-          changeAuthForm={changeAuthForm}
-        ></SignupPage>
-      )}
+        ></AuthModalChanger>
+      </div>
     </Modal>
   );
 }

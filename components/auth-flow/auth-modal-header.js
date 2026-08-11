@@ -1,15 +1,9 @@
 "use client";
 
-import { useAuth } from "@/context/auth-context";
 import styles from "./auth.module.css";
 import { X } from "lucide-react";
 
-export default function AuthModalHeader({ authMode }) {
-  const { setIsOpen } = useAuth();
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+export default function AuthModalHeader({ authMode, onClose }) {
   return (
     <header>
       {authMode === "login" ? (
@@ -19,11 +13,11 @@ export default function AuthModalHeader({ authMode }) {
         </div>
       ) : (
         <div className={styles.intro}>
-          <h4>Sign Up</h4>
+          <h4>Create an Account</h4>
           <p className={styles.subtitle}>and start tracking your tv shows.</p>
         </div>
       )}
-      <button onClick={closeModal} className={styles.secondaryButton}>
+      <button onClick={onClose} className={styles.secondaryButton}>
         <X></X>
       </button>
     </header>
