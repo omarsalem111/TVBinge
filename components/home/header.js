@@ -1,25 +1,27 @@
-"use client";
-
-import { LogIn } from "lucide-react";
 import styles from "./header.module.css";
-import { useAuth } from "@/context/auth-context";
 
-export default function HomeHeader() {
-  const { setIsOpen } = useAuth();
+import { getUserbyID } from "@/lib/db/user";
+import HeaderButton from "./header-button";
+import { deleteSession } from "@/lib/validations/session";
+import { redirect } from "next/navigation";
 
-  function openModal() {
-    setIsOpen(true);
+export default async function HomeHeader() {
+  const user = await getUserbyID();
+
+  async function logOut() {
+    "use server";
+
+    await deleteSession();
+    redirect("/");
   }
+
   return (
     <header className={styles.header}>
       <div className={styles.intro}>
         <h4>Hello, Omar</h4>
         <p>Explore new stuff and track your comfort shows.</p>
       </div>
-      <button onClick={openModal} className={styles.primaryButton}>
-        <LogIn size={16} strokeWidth={3}></LogIn>
-        Login
-      </button>
+      <HeaderButton auth={user} logOut={logOut}></HeaderButton>
     </header>
   );
 }

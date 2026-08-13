@@ -20,20 +20,6 @@
   align-items: center;
 }
 
-.searchField {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  padding: 1rem 2rem;
-  background-color: var(--purple-900);
-  border-radius: 1rem;
-  border: 2px solid var(--purple-800);
-  color: var(--text-placeholder);
-  font-size: var(--font-size-text-4);
-  align-items: center;
-  width: 600px;
-}
-
 /* .overlay {
   position: absolute;
   top: 0;
