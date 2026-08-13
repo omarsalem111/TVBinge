@@ -35,27 +35,6 @@
   gap: 1rem;
 }
 
-.inputGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.inputGroup label {
-  padding-left: 0.25rem;
-  font-weight: var(--font-weight-heading);
-  font-size: var(--font-size-text-5);
-}
-
-.inputGroup input {
-  padding: 1rem;
-  background-color: var(--purple-800);
-  color: var(--text-primary);
-  height: 32px;
-  border-radius: 1rem;
-  border: none;
-}
-
 .actionGroup {
   display: flex;
   flex-direction: row;
@@ -81,7 +60,7 @@
   border: 1px solid var(--purple-100);
 }
 
-.actionGroup button[type="button"] {
+.actionGroup button[type="submit"] {
   background-color: var(--purple-500);
 }
 

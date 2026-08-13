@@ -45,6 +45,7 @@
   --text-primary: var(--purple-50);
   --text-secondary: var(--neutral-200);
   --text-placeholder: var(--neutral-300);
+  --text-warning: red;
 }
 
 html {

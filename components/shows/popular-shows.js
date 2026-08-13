@@ -1,6 +1,6 @@
 import ShowPoster from "@/components/shows/show-poster";
 import styles from "@/app/shows/page.module.css";
-import { fetchPopularShows, fetchTMDBConfiguration } from "@/util/tmdb";
+import { fetchPopularShows, fetchTMDBConfiguration } from "@/lib/api/tmdb";
 
 export default async function PopularShows() {
   const { baseUrl, posterSizes } = await fetchTMDBConfiguration();
