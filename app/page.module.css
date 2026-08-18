@@ -54,22 +54,30 @@
   gap: 1rem;
 }
 
-.showPreview {
+.episodePreview {
   display: flex;
   flex-direction: column;
   max-width: 400px;
   gap: 0.5rem;
 }
 
-.imageContainer {
-  position: relative;
-  height: 144px;
-}
-
-.showPreview img {
+.episodePreview img {
   object-fit: cover;
   object-position: top;
   border-radius: 1rem;
+}
+
+.episodePreview img:hover {
+  border: 2px solid var(--text-primary);
+  filter: brightness(80%);
+  cursor: pointer;
+}
+
+.episodePreview .overview {
+  font-size: var(--font-size-text-5);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .showData {

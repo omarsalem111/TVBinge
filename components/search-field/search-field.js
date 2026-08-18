@@ -59,6 +59,8 @@ export default function SearchField({ baseUrl, posterSizes }) {
               <ShowPoster
                 key={show.id}
                 imagePath={baseUrl + posterSizes[6] + show.poster_path}
+                showName={show.original_name}
+                showID={show.id}
               ></ShowPoster>
             ))}
           </div>

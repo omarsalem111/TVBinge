@@ -50,12 +50,33 @@
   gap: 1rem;
 }
 
-.poster {
+.poster,
+.fallbackImg {
   border-radius: 1rem;
 }
 
-.poster:hover {
+.poster:hover,
+.fallbackImg:hover {
   border: 2px solid var(--text-primary);
   filter: brightness(80%);
   cursor: pointer;
+}
+
+.poster.active,
+.fallbackImg.active {
+  border: 2px solid var(--purple-500);
+  filter: brightness(50%);
+}
+
+.fallbackImg {
+  min-width: 144px;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+
+.fallbackImg p {
+  text-align: center;
+  width: 100%;
 }

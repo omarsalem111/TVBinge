@@ -5,6 +5,7 @@ import { fetchPopularShows, fetchTMDBConfiguration } from "@/lib/api/tmdb";
 export default async function PopularShows() {
   const { baseUrl, posterSizes } = await fetchTMDBConfiguration();
   const shows = await fetchPopularShows(1);
+
   return (
     <div className={styles.sectionRow}>
       <h4>Popular Shows</h4>
@@ -14,6 +15,8 @@ export default async function PopularShows() {
           <ShowPoster
             key={show.id}
             imagePath={baseUrl + posterSizes[6] + show.poster_path}
+            showName={show.original_name}
+            showID={show.id}
           ></ShowPoster>
         ))}
       </div>
