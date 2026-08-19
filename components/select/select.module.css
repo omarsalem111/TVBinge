@@ -1,0 +1,76 @@
+.Trigger {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  padding: 0.25rem 1rem;
+  font-size: var(--font-size-text-4);
+  gap: 0.25rem;
+  color: var(--text-primary);
+  box-shadow: 0 2px 10px var(--black-a7);
+  border: 2px solid var(--purple-800);
+  &:hover {
+    background-color: var(--purple-800);
+  }
+  &:focus {
+    box-shadow: 0 0 0 2px var(--text-primary);
+  }
+  &[data-placeholder] {
+    color: var(--text-primary);
+  }
+  &[data-disabled],
+  &[data-disabled] .Icon {
+    background-color: var(--neutral-900);
+    border: none;
+    color: var(--neutral-700);
+  }
+}
+
+.Icon {
+  color: var(--text-primary);
+}
+
+.Content {
+  background-color: var(--purple-950);
+  overflow: hidden;
+  border-radius: 0.25rem;
+  box-shadow:
+    0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  max-height: 15rem;
+}
+
+.Viewport {
+  padding: 0.5rem;
+}
+
+.Item {
+  font-size: var(--font-size-text-5);
+  color: var(--text-secondary);
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  height: 1.5rem;
+  padding: 1rem;
+  user-select: none;
+  &[data-disabled] {
+    color: var(--purple-200);
+    pointer-events: none;
+  }
+  &[data-highlighted] {
+    outline: none;
+    background-color: var(--purple-800);
+    color: var(--text-primary);
+  }
+}
+
+.ScrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  color: var(--violet-11);
+  cursor: default;
+}

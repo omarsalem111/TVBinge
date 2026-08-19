@@ -3,7 +3,7 @@
 import { fetchSeasonEpisodes } from "@/lib/api/tmdb";
 import { useEffect, useState } from "react";
 import EpisodePreview from "../shows/episode-preview";
-import styles from "./show-details.module.css";
+import styles from "./seasons.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -25,7 +25,10 @@ export default function EpisodeList({ id, seasonNumber, baseUrl, sizes }) {
         <h5> EPISODES ({seasonEpisodes.episodes.length})</h5>
         <div className={styles.postersRow}>
           {seasonEpisodes.episodes.map((episode) => (
-            <Link href={`${pathname}/${episode.id}`} key={episode.id}>
+            <Link
+              href={`${pathname}/${seasonNumber}/${episode.episode_number}/${episode.id}`}
+              key={episode.id}
+            >
               <EpisodePreview
                 episodeNumber={episode.episode_number}
                 episodeName={episode.name}
