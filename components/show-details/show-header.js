@@ -1,7 +1,7 @@
 import styles from "./show-details.module.css";
 import Image from "next/image";
 
-export default async function ShowHeader({ bannerImg, logo, name }) {
+export default async function ShowHeader({ bannerImg, logo, showName }) {
   return (
     <article className={styles.featured}>
       <Image
@@ -21,10 +21,8 @@ export default async function ShowHeader({ bannerImg, logo, name }) {
               className={styles.logo}
             ></Image>
           ) : (
-            <h2>{name}</h2>
+            <h2>{showName}</h2>
           )}
-
-          {/* <p>{tagline}</p> */}
         </div>
       </div>
     </article>

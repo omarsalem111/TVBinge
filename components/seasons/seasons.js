@@ -3,25 +3,12 @@
 import styles from "./seasons.module.css";
 import ShowPoster from "../shows/show-poster";
 import EpisodeList from "./episodes";
-import { useEffect, useRef, useState } from "react";
-import { fetchTMDBConfiguration } from "@/lib/api/tmdb";
+import { useState } from "react";
 import SeasonsFilter from "./seasons-filter";
 
-export default function Seasons({ showID, seasonsCount, seasons, imgPath }) {
+export default function Seasons({ showID, seasonsCount, seasons }) {
   const [seasonClicked, setSeasonClicked] = useState(null);
   const [seasonFilter, setSeasonFilter] = useState(null);
-  const baseURL = useRef("");
-  const sizes = useRef([]);
-
-  useEffect(() => {
-    async function setPathValues() {
-      const { baseUrl, posterSizes } = await fetchTMDBConfiguration();
-      console.log(posterSizes);
-      baseURL.current = baseUrl;
-      sizes.current = posterSizes;
-    }
-    setPathValues();
-  }, []);
 
   function handleSeasonClick(seasonNumber) {
     if (seasonNumber === seasonClicked) {
@@ -60,7 +47,7 @@ export default function Seasons({ showID, seasonsCount, seasons, imgPath }) {
                 season.episode_count > 0 && (
                   <ShowPoster
                     key={season.id}
-                    imagePath={imgPath + season.poster_path}
+                    imagePath={season.poster_path}
                     isSeason={true}
                     seasonNumber={season.season_number}
                     isActive={seasonClicked === season.season_number}
@@ -72,12 +59,7 @@ export default function Seasons({ showID, seasonsCount, seasons, imgPath }) {
       </div>
       <div className={styles.seasons}>
         {seasonClicked && (
-          <EpisodeList
-            id={showID}
-            seasonNumber={seasonClicked}
-            baseUrl={baseURL.current}
-            sizes={sizes.current}
-          ></EpisodeList>
+          <EpisodeList id={showID} seasonNumber={seasonClicked}></EpisodeList>
         )}
       </div>
     </>

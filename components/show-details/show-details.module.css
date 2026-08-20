@@ -36,12 +36,16 @@
 
 .featured .headerContent {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  justify-content: space-between;
   gap: 1rem;
+  height: 100%;
 }
 
-.headerContent p {
-  color: var(--text-secondary);
+.episodeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .infoContent {
@@ -51,8 +55,78 @@
   gap: 0.5rem;
 }
 
-.infoContent p {
+.imageContent {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 0.5rem;
+  gap: 1rem;
+}
+
+.infoContent p,
+.imageContent p {
   color: var(--text-secondary);
   font-size: var(--font-size-text-4);
   line-height: 1.4;
+}
+
+.creditsRow {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  gap: 2rem;
+}
+
+.poster,
+.fallbackImg {
+  border-radius: 1rem;
+}
+
+/* .poster:hover,
+.fallbackImg:hover {
+  border: 2px solid var(--text-primary);
+  filter: brightness(80%);
+  cursor: pointer;
+}
+
+.poster.active,
+.fallbackImg.active {
+  border: 2px solid var(--purple-500);
+  filter: brightness(50%);
+} */
+
+.castMember {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.castMember div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.castMember .castName {
+  font-size: var(--font-size-text-5);
+  color: var(--text-primary);
+}
+
+.castMember .castRole {
+  font-size: var(--font-size-text-6);
+}
+
+.fallbackImg {
+  min-width: 96px;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+
+.fallbackImg p {
+  text-align: center;
+  width: 100%;
 }

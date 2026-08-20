@@ -7,7 +7,7 @@ import styles from "./seasons.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function EpisodeList({ id, seasonNumber, baseUrl, sizes }) {
+export default function EpisodeList({ id, seasonNumber, seasons }) {
   const [seasonEpisodes, setSeasonEpisodes] = useState(null);
   const pathname = usePathname();
 
@@ -26,14 +26,14 @@ export default function EpisodeList({ id, seasonNumber, baseUrl, sizes }) {
         <div className={styles.postersRow}>
           {seasonEpisodes.episodes.map((episode) => (
             <Link
-              href={`${pathname}/${seasonNumber}/${episode.episode_number}/${episode.id}`}
+              href={`${pathname}/${seasonNumber}/${episode.episode_number}`}
               key={episode.id}
             >
               <EpisodePreview
                 episodeNumber={episode.episode_number}
                 episodeName={episode.name}
                 episodeOverview={episode.overview}
-                imgPath={baseUrl + sizes[6] + episode.still_path}
+                imgPath={episode.still_path}
               ></EpisodePreview>
             </Link>
           ))}

@@ -5,7 +5,7 @@ import { searchShowByName } from "@/lib/api/tmdb";
 import { useEffect, useState } from "react";
 import ShowPoster from "../shows/show-poster";
 
-export default function SearchField({ baseUrl, posterSizes }) {
+export default function SearchField() {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [results, setResults] = useState(null);
@@ -58,7 +58,7 @@ export default function SearchField({ baseUrl, posterSizes }) {
             {results.results.map((show) => (
               <ShowPoster
                 key={show.id}
-                imagePath={baseUrl + posterSizes[6] + show.poster_path}
+                imagePath={show.poster_path}
                 showName={show.original_name}
                 showID={show.id}
               ></ShowPoster>
