@@ -13,12 +13,48 @@ datasource db {
 }
 
 model User {
-  id           String @id @default(uuid())
-  username     String @unique
-  email        String @unique
-  passwordHash String
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  id              String     @id @default(uuid())
+  username        String     @unique
+  email           String     @unique
+  passwordHash    String
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  watchedEpisodes WatchedEpisode[]
+}
+
+model Show {
+  id           Int @id
+  name         String
+  posterPath   String
+
+  episodes     Episode[]
+}
+
+model Episode {
+  id             Int    @id
+  showId         Int
+  seasonNumber   Int
+  episodeNumber  Int
+  name           String
+  stillPath      String
+
+  watchedBy      WatchedEpisode[]
+
+  show           Show   @relation (fields: [showId], references: [id])
+}
+
+
+model WatchedEpisode {
+  userId         String
+  episodeId      Int
+  watchedAt      DateTime @default(now())
+  rewatchCount   Int      @default(0)
+
+  user           User     @relation (fields: [userId], references: [id])
+  episode        Episode  @relation (fields: [episodeId], references: [id])
+
+  @@id([userId, episodeId])
 }
 
 

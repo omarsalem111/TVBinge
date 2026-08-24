@@ -1,0 +1,116 @@
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--purple-950);
+  border: 1px solid var(--neutral-800);
+  padding: 1rem;
+  border-radius: 3rem;
+}
+
+.action:hover,
+.action[data-state="open"] {
+  cursor: pointer;
+  background-color: var(--neutral-900);
+  gap: 1rem;
+}
+
+.action.watched {
+  background-color: green;
+  border: none;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: var(--purple-950);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  &[data-side="top"] {
+    animation-name: slideDownAndFade;
+  }
+  &[data-side="right"] {
+    animation-name: slideLeftAndFade;
+  }
+  &[data-side="bottom"] {
+    animation-name: slideUpAndFade;
+  }
+  &[data-side="left"] {
+    animation-name: slideRightAndFade;
+  }
+}
+
+.Item {
+  font-size: var(--font-size-text-4);
+  line-height: 1;
+  color: var(--text-secondary);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  user-select: none;
+  outline: none;
+  &[data-highlighted] {
+    background-color: var(--neutral-900);
+    color: var(--text-primary);
+  }
+}
+
+.Separator {
+  height: 1px;
+  background-color: var(--violet-6);
+  margin: 5px;
+}
+
+.Arrow {
+  fill: black;
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

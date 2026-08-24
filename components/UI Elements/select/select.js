@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Select } from "radix-ui";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import styles from "./select.module.css";

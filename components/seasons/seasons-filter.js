@@ -1,5 +1,5 @@
 import styles from "./seasons.module.css";
-import { SelectElement, SelectItem } from "../select/select";
+import { SelectElement, SelectItem } from "../UI Elements/select/select";
 
 export default function SeasonsFilter({
   seasons,

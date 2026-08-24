@@ -1,8 +1,13 @@
 import styles from "./episode.module.css";
 import Image from "next/image";
-import EpisodeActions from "./episode-actions";
+import EpisodeActions from "../episode-actions/episode-actions";
+import { getUserbyID } from "@/lib/db/user";
+import { getWatchedState } from "@/lib/db/tracking";
 
 export default async function EpisodeHeader({ episodeData }) {
+  const { id: userId } = await getUserbyID();
+  const isWatched = await getWatchedState(userId, episodeData.id);
+
   return (
     <article className={styles.featured}>
       <Image
@@ -29,7 +34,10 @@ export default async function EpisodeHeader({ episodeData }) {
             <h2>{episodeData.name}</h2>
           )}
         </div>
-        <EpisodeActions episodeData={episodeData}></EpisodeActions>
+        <EpisodeActions
+          episodeData={episodeData}
+          watched={isWatched}
+        ></EpisodeActions>
       </div>
     </article>
   );
