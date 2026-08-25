@@ -37,7 +37,7 @@ export async function markEpisodeAsWatched(
     return;
   }
 
-  const episodeWatched = await addToWatched(userID, id);
+  const episodeWatched = await addToWatched(userID, showData.id, id);
 
   if (!episodeWatched) {
     return;
@@ -46,12 +46,12 @@ export async function markEpisodeAsWatched(
   return true;
 }
 
-export async function removeEpisodeFromWatched(id) {
+export async function removeEpisodeFromWatched(id, showId) {
   const { id: userID } = await getUserbyID();
 
   if (!userID) {
     return;
   }
 
-  await deleteUserEpisodeEntry(userID, id);
+  await deleteUserEpisodeEntry(userID, showId, id);
 }

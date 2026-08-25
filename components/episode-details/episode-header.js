@@ -6,7 +6,11 @@ import { getWatchedState } from "@/lib/db/tracking";
 
 export default async function EpisodeHeader({ episodeData }) {
   const { id: userId } = await getUserbyID();
-  const isWatched = await getWatchedState(userId, episodeData.id);
+  const isWatched = await getWatchedState(
+    userId,
+    episodeData.refShowData.id,
+    episodeData.id,
+  );
 
   return (
     <article className={styles.featured}>

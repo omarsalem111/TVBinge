@@ -41,7 +41,7 @@
 
   /* Tokens */
 
-  --bg-primary: var(--purple-900);
+  --bg-primary: #070708;
   --text-primary: var(--purple-50);
   --text-secondary: var(--neutral-200);
   --text-placeholder: var(--neutral-300);

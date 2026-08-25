@@ -32,7 +32,10 @@ export default function EpisodeActions({ episodeData, watched }) {
         episodeData.refShowData,
       );
     } else {
-      await removeEpisodeFromWatched(episodeData.id);
+      await removeEpisodeFromWatched(
+        episodeData.id,
+        episodeData.refShowData.id,
+      );
     }
   }
 

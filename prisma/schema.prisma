@@ -21,6 +21,7 @@ model User {
   updatedAt       DateTime   @updatedAt
 
   watchedEpisodes WatchedEpisode[]
+  watchedShows    UserShow[]
 }
 
 model Show {
@@ -29,6 +30,7 @@ model Show {
   posterPath   String
 
   episodes     Episode[]
+  watchedBy    UserShow[]
 }
 
 model Episode {
@@ -47,14 +49,39 @@ model Episode {
 
 model WatchedEpisode {
   userId         String
+  showId         Int
   episodeId      Int
   watchedAt      DateTime @default(now())
   rewatchCount   Int      @default(0)
 
   user           User     @relation (fields: [userId], references: [id])
   episode        Episode  @relation (fields: [episodeId], references: [id])
+  watchedShow    UserShow @relation (fields: [userId, showId], references: [userId, showId])       
 
-  @@id([userId, episodeId])
+  @@id([userId, showId, episodeId])
 }
+
+model UserShow {
+  userId          String
+  showId          Int
+  showStatus      ShowStatus   @default(WATCHING)
+  updatedAt       DateTime     @updatedAt
+  watchedEpisodes WatchedEpisode[]
+
+  user           User     @relation (fields: [userId], references: [id])
+  show           Show     @relation (fields: [showId], references: [id])
+
+  @@id([userId, showId])
+}
+
+enum ShowStatus {
+  WATCHING
+  COMPLETED
+  PAUSED
+  DROPPED
+  WATCHLISTED
+}
+
+
 
 

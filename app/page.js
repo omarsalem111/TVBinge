@@ -10,9 +10,9 @@ export default function Home() {
       <main className={styles.main}>
         <Suspense fallback={<p>Please Wait...</p>}>
           <HomeHeader></HomeHeader>
+          <FeaturedShow></FeaturedShow>
+          <ShowsProgress></ShowsProgress>
         </Suspense>
-        <FeaturedShow></FeaturedShow>
-        <ShowsProgress></ShowsProgress>
       </main>
     </div>
   );

@@ -5,10 +5,15 @@ import { Ellipsis, Eye } from "lucide-react";
 
 export default function EpisodePreview({
   isUserProgress,
+  isDiaryEntry,
   episodeNumber,
+  showName,
+  seasonNumber,
   episodeName,
   episodeOverview,
   imgPath,
+  episodesCount,
+  userEpisodesCount,
 }) {
   return (
     <div className={styles.episodePreview}>
@@ -21,10 +26,10 @@ export default function EpisodePreview({
         ></Image>
       </div>
       <div className={styles.showData}>
-        {isUserProgress ? (
+        {isUserProgress || isDiaryEntry ? (
           <div className={styles.showDetails}>
-            <h5>Ted Lasso</h5>
-            <p>Season 4: Episode 1 — Home</p>
+            <h5>{showName}</h5>
+            <p>{`Season ${seasonNumber}: Episode ${episodeNumber} — ${episodeName}`}</p>
           </div>
         ) : (
           <div className={styles.showDetails}>
@@ -37,7 +42,9 @@ export default function EpisodePreview({
             <Ellipsis size={20}></Ellipsis>
             <div className={styles.episodeCount}>
               <Eye size={16}></Eye>
-              <p>34 / 44</p>
+              <p>
+                {userEpisodesCount} / {episodesCount}
+              </p>
             </div>
           </div>
         )}
