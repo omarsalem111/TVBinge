@@ -20,8 +20,8 @@
   border-radius: 1rem;
   padding: 3rem;
   display: flex;
-  flex-direction: column;
-  justify-content: end;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .featured .backdrop {

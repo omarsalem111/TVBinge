@@ -1,0 +1,635 @@
+/* ═══════════════════════════════════════════
+   DIARY PAGE - COMPONENT STYLES
+   ═══════════════════════════════════════════ */
+
+/* ─── Layout ─── */
+.diaryLayout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.iconButton,
+.textButton {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  background-color: var(--purple-950);
+  border: 1px solid var(--neutral-800);
+  color: var(--neutral-200);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.iconButton:hover,
+.textButton:hover {
+  background-color: var(--neutral-900);
+  border-color: var(--neutral-600);
+  color: var(--purple-50);
+}
+
+.iconButton.active {
+  background-color: var(--purple-600);
+  border-color: var(--purple-400);
+  color: var(--purple-50);
+  box-shadow: 0 4px 12px rgba(85, 13, 242, 0.35);
+}
+
+/* ─── Calendar Popup ─── */
+.calendarWrapper {
+  position: relative;
+}
+
+.calendarPopup {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 50;
+  width: 280px;
+  background-color: var(--neutral-900);
+  border: 1px solid var(--neutral-800);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  animation: calendarFadeIn 0.2s ease-out;
+}
+
+@keyframes calendarFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendarHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.calendarTitle {
+  font-size: var(--font-size-heading-6);
+  font-weight: var(--font-weight-heading);
+  color: var(--text-primary);
+}
+
+.calendarNavBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--neutral-300);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendarNavBtn:hover {
+  background-color: var(--purple-950);
+  color: var(--text-primary);
+}
+
+.calendarWeekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 0.25rem;
+}
+
+.calendarWeekday {
+  text-align: center;
+  font-size: var(--font-size-text-6);
+  font-weight: var(--font-weight-heading);
+  color: var(--neutral-400);
+  padding: 0.25rem 0;
+  user-select: none;
+}
+
+.calendarDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendarDay {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--neutral-300);
+  font-size: var(--font-size-text-5);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.calendarDay:hover {
+  background-color: var(--purple-950);
+  color: var(--text-primary);
+}
+
+.calendarDayHasEntries {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-heading);
+}
+
+.calendarDayHasEntries::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--purple-400);
+}
+
+.calendarDaySelected {
+  background-color: var(--purple-500) !important;
+  color: white !important;
+  font-weight: var(--font-weight-heading);
+}
+
+.calendarDaySelected::after {
+  background-color: white !important;
+}
+
+.calendarDayOtherMonth {
+  color: var(--neutral-600);
+}
+
+.calendarDayToday {
+  border: 1px solid var(--purple-400);
+}
+
+/* ─── Body (Two Columns) ─── */
+.body {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+/* ─── Day Squares Column (Left) ─── */
+.daysColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-right: 0.25rem;
+}
+
+.daysColumnHeader {
+  font-size: var(--font-size-text-5);
+  font-weight: var(--font-weight-heading);
+  color: var(--neutral-300);
+  text-align: center;
+  padding-bottom: 0.375rem;
+  border-bottom: 1px solid var(--neutral-800);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.daySquare {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.75rem;
+  background-color: var(--purple-950);
+  border: 1px solid var(--neutral-800);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.daySquare:hover {
+  border-color: var(--purple-500);
+  background-color: rgba(85, 13, 242, 0.15);
+  transform: scale(1.05);
+}
+
+.dayNumber {
+  font-size: var(--font-size-heading-5);
+  font-weight: var(--font-weight-heading);
+  color: var(--neutral-400);
+  line-height: 1;
+}
+
+.dayWeekday {
+  font-size: 0.5625rem;
+  color: var(--neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.daySquareHasEntries {
+  border-color: var(--purple-600);
+  background-color: rgba(85, 13, 242, 0.1);
+}
+
+.daySquareHasEntries .dayNumber {
+  color: var(--purple-200);
+}
+
+.daySquareHasEntries .dayWeekday {
+  color: var(--purple-300);
+}
+
+.daySquareSelected {
+  background: linear-gradient(
+    135deg,
+    var(--purple-500),
+    var(--purple-600)
+  ) !important;
+  border-color: var(--purple-400) !important;
+  box-shadow: 0 4px 16px rgba(85, 13, 242, 0.4);
+  transform: scale(1.05);
+}
+
+.daySquareSelected .dayNumber {
+  color: white !important;
+}
+
+.daySquareSelected .dayWeekday {
+  color: var(--purple-100) !important;
+}
+
+.daySquareToday {
+  border-color: var(--purple-300);
+}
+
+.daySquareToday .dayNumber {
+  color: var(--text-primary);
+}
+
+.entryCountBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  background-color: var(--purple-500);
+  color: white;
+  font-size: 0.5625rem;
+  font-weight: var(--font-weight-heading);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(85, 13, 242, 0.5);
+}
+
+/* ─── Entries Column (Right) ─── */
+.entriesColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+  gap: 2rem;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.entriesEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 0.75rem;
+  color: var(--neutral-400);
+}
+
+.entriesEmpty svg {
+  color: var(--neutral-600);
+}
+
+.entriesEmpty p {
+  font-size: var(--font-size-text-4);
+}
+
+.entriesDateLabel {
+  font-size: var(--font-size-text-5);
+  font-weight: var(--font-weight-heading);
+  color: var(--neutral-300);
+  letter-spacing: 0.5px;
+  padding-bottom: 0.375rem;
+  border-bottom: 1px solid var(--neutral-800);
+  flex-shrink: 0;
+}
+
+/* ─── Diary Entry Slice ─── */
+.sliceContainer {
+  position: relative;
+  width: 100%;
+  min-height: 96px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--neutral-800);
+  background-color: var(--neutral-900);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.sliceContainer:hover,
+.sliceContainer.active {
+  border-color: var(--neutral-400);
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  z-index: 1;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.sliceContainer:hover .bgImage,
+.sliceContainer.active .bgImage {
+  opacity: 0.8;
+}
+
+.overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    hsla(259, 90, 3, 10%) 0%,
+    hsla(259, 90, 3, 50%) 25%,
+    hsla(259, 90, 3, 75%) 75%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sliceRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.infoGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.image {
+  height: auto;
+}
+
+.stillImage {
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.showName {
+  font-size: var(--font-size-heading-6);
+  font-weight: var(--font-weight-heading);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sliceIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--purple-950);
+  border: 1px solid var(--neutral-800);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sliceIconBtn:hover {
+  background-color: var(--neutral-900);
+}
+
+.chevronIcon {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chevronIconRotated {
+  transform: rotate(180deg);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Entry Wrapper — groups slice + drawer */
+.entryWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Drawer — slides out below the slice */
+.drawer {
+  max-height: 0;
+  opacity: 0;
+  margin-inline: 0.25rem;
+  overflow: hidden;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+}
+
+.drawerOpen {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--neutral-800);
+  border-top: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  margin-top: -1px;
+}
+
+.drawerRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expandedDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+
+.expandedInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.expandedInfo p {
+  font-size: var(--font-size-text-4);
+}
+
+.expandedInfo span {
+  font-weight: var(--font-weight-heading);
+  font-size: var(--font-size-text-5);
+  color: var(--neutral-400);
+}
+
+.expandedMetaRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: var(--neutral-300);
+  font-size: var(--font-size-text-5);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.metaItem svg {
+  color: green;
+}
+
+.expandedActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  color: var(--text-secondary);
+  font-size: var(--font-size-text-6);
+  background-color: var(--purple-950);
+  border: 1px solid var(--neutral-800);
+  transition: all 0.25s ease;
+}
+
+.actionLink:hover {
+  background-color: var(--purple-800);
+  color: var(--text-primary);
+  border-color: var(--purple-600);
+}
+
+/* ─── Stats Footer ─── */
+.statsRow {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background-color: var(--purple-900);
+  border: 1px solid var(--neutral-800);
+  transition: all 0.25s ease;
+}
+
+.statCard h6 {
+  color: var(--text-secondary);
+}
+
+.statIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple-500);
+}
+
+.statInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.statValue {
+  font-size: var(--font-size-heading-4);
+  font-weight: var(--font-weight-heading);
+  color: var(--text-primary);
+  line-height: 1;
+}

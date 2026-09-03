@@ -28,6 +28,8 @@ model Show {
   id           Int @id
   name         String
   posterPath   String
+  logoPath     String?
+  backdropPath String?
 
   episodes     Episode[]
   watchedBy    UserShow[]

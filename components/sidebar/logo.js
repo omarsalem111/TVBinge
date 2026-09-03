@@ -3,7 +3,7 @@ import styles from "./sidebar.module.css";
 export default function Logo() {
   return (
     <svg
-      viewBox="0 0 246 60"
+      viewBox="0 0 69 60"
       xmlns="http://www.w3.org/2000/svg"
       className={styles.logo}
     >
@@ -53,7 +53,7 @@ export default function Logo() {
           fill="#550df2"
           points="30.798702239990234,18.577922821044922 30.798702239990234,29.577922821044922 40.798702239990234,24.077922821044922 "
         />
-        <text
+        {/* <text
           id="svg_7"
           fill="#550df2"
           fontWeight="bold"
@@ -62,7 +62,7 @@ export default function Logo() {
           x="79.5"
         >
           TVBinge
-        </text>
+        </text> */}
       </g>
     </svg>
   );

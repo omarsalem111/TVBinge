@@ -7,9 +7,10 @@ import Link from "next/link";
 
 export default async function ShowsProgress() {
   const { id: userId } = await getUserbyID();
-  const watchedShows = await getWatchedShows(userId);
+  const watchedShows = userId && (await getWatchedShows(userId));
   async function deduceUpcomingEpisodes() {
     const nextEpisodes = [];
+    if (!watchedShows) return;
     for (const show of watchedShows) {
       if (show.watchedEpisodes.length > 0) {
         let lastSeasonWatched = 1;

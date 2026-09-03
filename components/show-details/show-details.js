@@ -15,7 +15,7 @@ export default async function ShowDetails({ params }) {
         <ShowHeader
           bannerImg={showData.backdrop_path}
           logo={showData.logo_path}
-          showName={showData.original_name}
+          showData={showData}
         ></ShowHeader>
         <ShowPlot plot={showData.overview}></ShowPlot>
         <Seasons
