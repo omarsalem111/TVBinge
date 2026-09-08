@@ -12,6 +12,9 @@ export default async function ShowsProgress() {
     const nextEpisodes = [];
     if (!watchedShows) return;
     for (const show of watchedShows) {
+      if (show.showStatus === "COMPLETED") {
+        continue;
+      }
       if (show.watchedEpisodes.length > 0) {
         let lastSeasonWatched = 1;
         let lastEpisodeWatched = 1;

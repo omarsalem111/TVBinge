@@ -14,6 +14,7 @@ export default function NavLink({ Icon, path, label }) {
       }
     >
       <Icon size={24}></Icon>
+      {/* {urlPath === path && label} */}
     </Link>
   );
 }

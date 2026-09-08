@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  border-right: 1px solid var(--purple-800);
 }
 
 .sidebar .logo {
@@ -21,9 +22,26 @@
 .profile {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--neutral-900);
+  border: 1px solid var(--neutral-800);
+  border-radius: 1rem;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.userInfo p {
+  font-size: var(--font-size-text-5);
+  font-weight: var(--font-weight-heading);
+  text-transform: capitalize;
 }
 
 .profilePic {

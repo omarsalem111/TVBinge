@@ -29,6 +29,7 @@
 }
 
 .Icon {
+  display: flex;
   color: var(--text-primary);
 }
 

@@ -10,4 +10,5 @@
   flex-direction: column;
   gap: 2rem;
   padding: 3rem 2rem;
+  height: 100%;
 }

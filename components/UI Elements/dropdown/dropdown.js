@@ -3,6 +3,12 @@ import { EyeClosed, Pause, Square, Check, Play, X } from "lucide-react";
 import styles from "./dropdown.module.css";
 
 export default function DropdownElement({ action, state }) {
+  const statusIcon = {
+    WATCHING: <Play />,
+    PAUSED: <Pause />,
+    DROPPED: <Square />,
+    COMPLETED: <Check />,
+  };
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -13,7 +19,7 @@ export default function DropdownElement({ action, state }) {
               : styles.action
           }
         >
-          {state ? <Play></Play> : <EyeClosed></EyeClosed>}
+          {state ? statusIcon[state] : <EyeClosed></EyeClosed>}
           <span
             className={
               state
@@ -27,33 +33,88 @@ export default function DropdownElement({ action, state }) {
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          className={styles.Content}
-          side="bottom"
-          sideOffset={6}
-        >
-          <DropdownMenu.Label className={styles.Label}>
-            Set To
-          </DropdownMenu.Label>
-          <DropdownMenu.Group>
-            <DropdownMenu.Item className={styles.Item} onSelect={action}>
-              <Pause size={16}></Pause>
-              Paused
+        {state ? (
+          <DropdownMenu.Content
+            className={styles.Content}
+            side="bottom"
+            sideOffset={6}
+          >
+            <DropdownMenu.Label className={styles.Label}>
+              Set To
+            </DropdownMenu.Label>
+            <DropdownMenu.Group>
+              {state !== "PAUSED" && (
+                <DropdownMenu.Item
+                  className={styles.Item}
+                  onSelect={() => action("PAUSED")}
+                >
+                  <Pause size={16}></Pause>
+                  Paused
+                </DropdownMenu.Item>
+              )}
+              {state !== "DROPPED" && (
+                <DropdownMenu.Item
+                  className={styles.Item}
+                  onSelect={() => action("DROPPED")}
+                >
+                  <Square size={16}></Square>Dropped
+                </DropdownMenu.Item>
+              )}
+              {state !== "COMPLETED" && (
+                <DropdownMenu.Item
+                  className={styles.Item}
+                  onSelect={() => action("COMPLETED")}
+                >
+                  <Check size={16}></Check> Completed
+                </DropdownMenu.Item>
+              )}
+              {state !== "WATCHING" && (
+                <DropdownMenu.Item
+                  className={styles.Item}
+                  onSelect={() => action("WATCHING")}
+                >
+                  <Play size={16}></Play>Watching
+                </DropdownMenu.Item>
+              )}
+            </DropdownMenu.Group>
+            {state && (
+              <>
+                <DropdownMenu.Separator className={styles.Separator} />
+                <DropdownMenu.Item
+                  className={styles.Item}
+                  onSelect={() => action()}
+                >
+                  Add a Review
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  className={`${styles.Item} ${styles.remove}`}
+                  onSelect={() => action()}
+                >
+                  <X size={16}></X>Remove Show
+                </DropdownMenu.Item>
+              </>
+            )}
+          </DropdownMenu.Content>
+        ) : (
+          <DropdownMenu.Content
+            className={styles.Content}
+            side="bottom"
+            sideOffset={6}
+          >
+            <DropdownMenu.Item
+              className={styles.Item}
+              onSelect={() => action("COMPLETED")}
+            >
+              Mark as Watched
             </DropdownMenu.Item>
-            <DropdownMenu.Item className={styles.Item}>
-              <Square size={16}></Square>Dropped
+            <DropdownMenu.Item
+              className={styles.Item}
+              onSelect={() => action()}
+            >
+              Add a Review
             </DropdownMenu.Item>
-            <DropdownMenu.Item className={styles.Item}>
-              <Check size={16}></Check> Completed
-            </DropdownMenu.Item>
-            <DropdownMenu.Item className={styles.Item}>
-              <Play size={16}></Play>Watching
-            </DropdownMenu.Item>
-            <DropdownMenu.Item className={styles.Item}>
-              <X size={16}></X>Remove
-            </DropdownMenu.Item>
-          </DropdownMenu.Group>
-        </DropdownMenu.Content>
+          </DropdownMenu.Content>
+        )}
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
   );

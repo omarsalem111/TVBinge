@@ -21,6 +21,7 @@
   --neutral-700: #302c36;
   --neutral-800: #211d27;
   --neutral-900: #110d17;
+  --neutral-950: #070708;
 
   --font-size-heading-1: 3rem;
   --font-size-heading-2: 2.5rem;
@@ -41,11 +42,11 @@
 
   /* Tokens */
 
-  --bg-primary: #070708;
+  --bg-primary: var(--neutral-950);
   --text-primary: var(--purple-50);
   --text-secondary: var(--neutral-200);
   --text-placeholder: var(--neutral-300);
-  --text-warning: red;
+  --text-warning: #f20d0d;
 }
 
 html {

@@ -2,11 +2,11 @@ import { getUserbyID } from "@/lib/db/user";
 import ShowActions from "./show-actions";
 import styles from "./show-details.module.css";
 import Image from "next/image";
-import { getShowState } from "@/lib/db/tracking";
+import { getWatchedState } from "@/lib/db/tracking";
 
 export default async function ShowHeader({ bannerImg, logo, showData }) {
   const { id: userId } = await getUserbyID();
-  const show = await getShowState(userId, showData.id);
+  const show = await getWatchedState(userId, showData.id);
   return (
     <article className={styles.featured}>
       <Image
@@ -29,7 +29,12 @@ export default async function ShowHeader({ bannerImg, logo, showData }) {
             <h2>{showData.name}</h2>
           )}
         </div>
-        <ShowActions showStatus={show?.showStatus} />
+        <ShowActions
+          showStatus={show?.showStatus}
+          userId={userId}
+          showId={showData.id}
+          showData={showData}
+        />
       </div>
     </article>
   );

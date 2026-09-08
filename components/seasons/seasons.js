@@ -9,6 +9,7 @@ import SeasonsFilter from "./seasons-filter";
 export default function Seasons({ showID, seasonsCount, seasons }) {
   const [seasonClicked, setSeasonClicked] = useState(null);
   const [seasonFilter, setSeasonFilter] = useState(null);
+  const [episodeFilter, setEpisodeFilter] = useState(null);
 
   function handleSeasonClick(seasonNumber) {
     if (seasonNumber === seasonClicked) {
@@ -19,7 +20,22 @@ export default function Seasons({ showID, seasonsCount, seasons }) {
   }
 
   function handleSeasonFilter(value) {
-    setSeasonFilter(parseInt(value));
+    if (value === "0") {
+      setSeasonClicked(null);
+      setSeasonFilter(null);
+    } else {
+      setSeasonClicked(parseInt(value));
+      setSeasonFilter(parseInt(value));
+    }
+    setEpisodeFilter(null);
+  }
+
+  function handleEpisodeFilter(value) {
+    if (value === "0") {
+      setEpisodeFilter(null);
+    } else {
+      setEpisodeFilter(parseInt(value));
+    }
   }
   return (
     <>
@@ -31,6 +47,8 @@ export default function Seasons({ showID, seasonsCount, seasons }) {
             seasonsCount={seasonsCount}
             isFiltered={seasonFilter}
             onSeasonFilter={handleSeasonFilter}
+            episodeFilter={episodeFilter}
+            onEpisodeFilter={handleEpisodeFilter}
           ></SeasonsFilter>
         </div>
 
@@ -59,7 +77,11 @@ export default function Seasons({ showID, seasonsCount, seasons }) {
       </div>
       <div className={styles.seasons}>
         {seasonClicked && (
-          <EpisodeList id={showID} seasonNumber={seasonClicked}></EpisodeList>
+          <EpisodeList
+            id={showID}
+            seasonNumber={seasonClicked}
+            episodeFilter={episodeFilter}
+          ></EpisodeList>
         )}
       </div>
     </>

@@ -1,8 +1,19 @@
 "use server";
 
-import { addOrUpdateEpisode, addOrUpdateShow } from "@/lib/db/shows";
-import { addToWatched, deleteUserEpisodeEntry } from "@/lib/db/tracking";
+import {
+  addEpisodes,
+  addOrUpdateEpisode,
+  addOrUpdateShow,
+} from "@/lib/db/shows";
+import {
+  addEpisodeToWatched,
+  deleteUserEpisodeEntry,
+  deleteUserShow,
+  getWatchedState,
+  markShowCompleted,
+} from "@/lib/db/tracking";
 import { getUserbyID } from "@/lib/db/user";
+import { fetchSeasonEpisodes } from "@/lib/api/tmdb";
 
 export async function markEpisodeAsWatched(
   id,
@@ -37,7 +48,7 @@ export async function markEpisodeAsWatched(
     return;
   }
 
-  const episodeWatched = await addToWatched(userID, showData.id, id);
+  const episodeWatched = await addEpisodeToWatched(userID, showData.id, id);
 
   if (!episodeWatched) {
     return;
@@ -54,4 +65,71 @@ export async function removeEpisodeFromWatched(id, showId) {
   }
 
   await deleteUserEpisodeEntry(userID, showId, id);
+}
+
+export async function removeShowFromWatched(userId, showId) {
+  await deleteUserShow(userId, showId);
+}
+
+export async function checkSeasonEpisodesWatched(episodes) {
+  const { id: userID } = await getUserbyID();
+
+  if (!userID) {
+    return;
+  }
+
+  const watchedEpisodes = [];
+
+  for (const episode of episodes) {
+    const isWatched = await getWatchedState(
+      userID,
+      episode.show_id,
+      episode.id,
+    );
+    watchedEpisodes.push({ ...episode, is_watched: isWatched ? true : false });
+  }
+
+  return watchedEpisodes;
+}
+
+export async function markShowAsCompleted(userId, showId, showData) {
+  const showUpsert = await addOrUpdateShow({
+    id: showId,
+    name: showData.name,
+    posterPath: showData.poster_path,
+    logoPath: showData.logo_path,
+    backdropPath: showData.backdrop_path,
+  });
+
+  if (!showUpsert) {
+    return;
+  }
+
+  const seasonsData = await Promise.all(
+    showData.seasons.map((season) =>
+      fetchSeasonEpisodes(showId, season.season_number),
+    ),
+  );
+
+  const episodesToInsert = [];
+  for (const seasonData of seasonsData) {
+    for (const ep of seasonData.episodes) {
+      episodesToInsert.push({
+        id: ep.id,
+        showId,
+        seasonNumber: ep.season_number,
+        episodeNumber: ep.episode_number,
+        name: ep.name,
+        stillPath: ep.still_path,
+      });
+    }
+  }
+
+  await addEpisodes(episodesToInsert);
+
+  const episodeIds = episodesToInsert.map((ep) => ep.id);
+
+  await markShowCompleted(userId, showId, episodeIds);
+
+  return true;
 }

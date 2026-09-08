@@ -28,8 +28,8 @@ model Show {
   id           Int @id
   name         String
   posterPath   String
-  logoPath     String?
-  backdropPath String?
+  logoPath     String
+  backdropPath String
 
   episodes     Episode[]
   watchedBy    UserShow[]
@@ -53,8 +53,8 @@ model WatchedEpisode {
   userId         String
   showId         Int
   episodeId      Int
-  watchedAt      DateTime @default(now())
-  rewatchCount   Int      @default(0)
+  watchedAt      DateTime? @default(now())
+  rewatchCount   Int       @default(0)
 
   user           User     @relation (fields: [userId], references: [id])
   episode        Episode  @relation (fields: [episodeId], references: [id])

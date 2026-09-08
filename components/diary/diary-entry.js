@@ -69,7 +69,11 @@ export default function DiaryEntry({ episodes }) {
       >
         <div className={styles.drawerContent}>
           {episodes.map((episodeEntry) => {
-            // console.log("Logging Episode", episodeEntry);
+            console.log("Logging Episode", episodeEntry);
+            const slugName = episodeEntry.episode.show.name
+              .toLowerCase()
+              .replace(" ", "-");
+            const episodeUrl = `/shows/${slugName}-${episodeEntry.showId}/${episodeEntry.episode.seasonNumber}/${episodeEntry.episode.episodeNumber}`;
             return (
               <div key={episodeEntry.episodeId} className={styles.drawerRow}>
                 <div className={styles.expandedDetails}>
@@ -93,7 +97,7 @@ export default function DiaryEntry({ episodes }) {
                   <div className={styles.metaItem}>
                     <Eye size={16} />
                   </div>
-                  <Link href={"episodeUrl"} className={`${styles.actionLink}`}>
+                  <Link href={episodeUrl} className={`${styles.actionLink}`}>
                     <span>View Episode</span>
                     <ArrowRight size={12} />
                   </Link>

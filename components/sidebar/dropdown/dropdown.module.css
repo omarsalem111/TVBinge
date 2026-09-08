@@ -1,69 +1,5 @@
-.action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--purple-950);
-  border: 1px solid var(--neutral-800);
-  padding: 1rem;
-  border-radius: 3rem;
-  gap: 0;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.actionLabel {
-  max-width: 0;
-  opacity: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.action:hover,
-.action[data-state="open"] {
-  cursor: pointer;
-  background-color: var(--neutral-900);
-  gap: 0.75rem;
-}
-
-.action:hover .actionLabel,
-.action[data-state="open"] .actionLabel,
-.actionLabel.active {
-  max-width: 200px;
-  opacity: 1;
-}
-
-.action.watching,
-.action.paused,
-.action.dropped,
-.action.completed {
-  gap: 0.5rem;
-  border: none;
-}
-
-.action.watching {
-  background-color: var(--purple-500);
-}
-
-.action.dropped {
-  background-color: #f20d0d;
-}
-
-.action.paused {
-  background-color: #f28b0d;
-}
-
-.action.completed {
-  background-color: #23c20a;
-}
-
-.action span {
-  font-weight: var(--font-weight-heading);
-  font-size: var(--font-size-text-4);
-  letter-spacing: 2px;
-}
-
-.action span p {
-  letter-spacing: 0;
+.Trigger svg {
+  color: var(--text-secondary);
 }
 
 .Content {
@@ -71,11 +7,10 @@
   display: flex;
   flex-direction: column;
   max-width: 200px;
-  background-color: var(--neutral-900);
   background-color: var(--neutral-950);
   border: 1px solid var(--neutral-800);
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.5rem;
   gap: 0.5rem;
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -94,17 +29,12 @@
   }
 }
 
-.Label {
-  font-size: var(--font-size-text-5);
-  color: var(--text-primary);
-}
-
 .Item {
-  font-size: var(--font-size-text-4);
+  font-size: var(--font-size-text-5);
   line-height: 1;
   color: var(--text-secondary);
-  border-radius: 0.5rem;
-  padding: 1rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -115,19 +45,21 @@
     background-color: var(--neutral-700);
     color: var(--text-primary);
   }
-  &[data-highlighted].remove {
+
+  &[data-highlighted].logout {
     background-color: var(--text-warning);
     color: var(--purple-950);
   }
 }
 
-.Item.remove {
+.Item.logout {
   color: var(--text-warning);
 }
 
 .Separator {
   height: 1px;
-  background-color: var(--neutral-800);
+  background-color: var(--violet-6);
+  margin: 5px;
 }
 
 @keyframes slideUpAndFade {

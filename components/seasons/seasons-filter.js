@@ -6,6 +6,8 @@ export default function SeasonsFilter({
   seasonsCount,
   isFiltered,
   onSeasonFilter,
+  episodeFilter,
+  onEpisodeFilter,
 }) {
   const seasonsArray = Array(seasonsCount).fill(0);
   return (
@@ -27,8 +29,9 @@ export default function SeasonsFilter({
       <SelectElement
         name="episode"
         id="episode"
-        defaultValue={"0"}
-        disabled={isFiltered ? false : true}
+        value={episodeFilter ? `${episodeFilter}` : "0"}
+        disabled={!isFiltered}
+        onChange={onEpisodeFilter}
       >
         <SelectItem value={"0"}>All Episodes</SelectItem>
         {seasons

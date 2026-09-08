@@ -17,7 +17,11 @@ function computeStreaks(watchHistory) {
   }
 
   const dateSet = new Set();
-  watchHistory.forEach((entry) => dateSet.add(formatDateKey(entry.watchedAt)));
+  watchHistory.forEach((entry) => {
+    if (entry.watchedAt) {
+      dateSet.add(formatDateKey(entry.watchedAt));
+    }
+  });
 
   const sortedDates = [...dateSet].sort();
 
@@ -59,6 +63,7 @@ function computeStreaks(watchHistory) {
 function buildDaysMap(watchHistory) {
   const map = {};
   watchHistory.forEach((entry) => {
+    if (!entry.watchedAt) return;
     const key = formatDateKey(new Date(entry.watchedAt));
     if (!map[key]) {
       map[key] = [];

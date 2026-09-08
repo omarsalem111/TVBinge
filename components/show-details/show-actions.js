@@ -4,10 +4,22 @@ import { Heart, Plus } from "lucide-react";
 import styles from "@/components/episode-actions/episode-actions.module.css";
 import DropdownElement from "../UI Elements/dropdown/dropdown";
 import { useState } from "react";
+import {
+  markShowAsCompleted,
+  removeShowFromWatched,
+} from "@/app/actions/tracking-actions";
 
-export default function ShowActions({ showStatus }) {
+export default function ShowActions({ showStatus, userId, showId, showData }) {
   const [showState, setShowState] = useState(showStatus);
-  async function handleShowControls(action) {}
+  console.log(showData);
+  async function handleShowControls(action) {
+    if (!action) {
+      await removeShowFromWatched(userId, showId);
+    } else if (action === "COMPLETED") {
+      await markShowAsCompleted(userId, showId, showData);
+    }
+    setShowState(action);
+  }
   return (
     <div className={styles.episodeActions}>
       <div className={styles.actionGroup}>

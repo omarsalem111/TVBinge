@@ -45,6 +45,17 @@
   border-radius: 1rem;
 }
 
+.fallbackImg {
+  min-width: 400px;
+  min-height: 148.8px;
+  background-color: var(--purple-900);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+
 .featured .title {
   text-shadow: 2px 2px 8px hsla(259, 90, 3, 50%);
 }
@@ -72,6 +83,23 @@
   border: 2px solid var(--text-primary);
   filter: brightness(80%);
   cursor: pointer;
+}
+
+.episodePreview img.greyedOut {
+  border: 1px solid var(--neutral-500);
+  filter: brightness(30%);
+}
+
+.episodeTitle {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.episodeTitle svg {
+  color: #23c20a;
 }
 
 .episodePreview .overview {
